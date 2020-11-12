@@ -1,0 +1,9 @@
+{
+  "name": "GraphQL_API",
+  "version": "1.0.0",
+  "description": "Movie API with GraphQL",
+  "main": "index.js",
+  "repository": "https://github.com/sim0417/my-study-graphQL-API",
+  "author": "Eon-Jo",
+  "license": "MIT"
+}
