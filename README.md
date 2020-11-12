@@ -1,1 +1,3 @@
-"# my-study-graphql-api" 
+# graphQL-API
+
+Learning GraphQL by make movie APIs
