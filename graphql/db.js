@@ -1,50 +1,46 @@
-let movie = [
-  {
-    id: 1,
-    name: "Movie1",
-    score: 10,
-  },
-  {
-    id: 2,
-    name: "Movie2",
-    score: 20,
-  },
-  {
-    id: 3,
-    name: "Movie3",
-    score: 30,
-  },
-  {
-    id: 4,
-    name: "Movie4",
-    score: 40,
-  },
-];
+import axios from "axios";
+const BASE_URL = "https://yts-proxy.now.sh/";
+const LIST_MOVIES_URL = `${BASE_URL}list_movies.json`;
+const MOVIE_DETAILS_URL = `${BASE_URL}movie_details.json`;
+const MOVIE_SUGGESTIONS_URL = `${BASE_URL}movie_suggestions.json`;
 
-export const getMovies = () => movie;
-
-export const getById = (id) => {
-  return movie.find((item) => item.id === id);
+export const getMovies = async (limit, rating) => {
+  const {
+    data: {
+      data: { movies },
+    },
+  } = await axios(LIST_MOVIES_URL, {
+    params: {
+      limit,
+      minimum_rating: rating,
+    },
+  });
+  return movies;
 };
 
-export const deleteMovie = (id) => {
-  const cleanMovie = movie.filter((item) => item.id !== id);
+export const getMovie = async (id) => {
+  const {
+    data: {
+      data: { movie },
+    },
+  } = await axios(MOVIE_DETAILS_URL, {
+    params: {
+      movie_id: id,
+    },
+  });
 
-  if (movie.length > cleanMovie.length) {
-    movie = cleanMovie;
-    return true;
-  } else {
-    return false;
-  }
+  return movie;
 };
 
-export const addMovie = (name, score) => {
-  const newMovie = {
-    id: movie.length + 1,
-    name,
-    score,
-  };
-
-  movie.push(newMovie);
-  return newMovie;
+export const getSuggestions = async (id) => {
+  const {
+    data: {
+      data: { movies },
+    },
+  } = await axios(MOVIE_SUGGESTIONS_URL, {
+    params: {
+      movie_id: id,
+    },
+  });
+  return movies;
 };
