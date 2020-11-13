@@ -1,0 +1,21 @@
+type Movie {
+  poster_path: String
+  adult: Boolean
+  release_date: String
+  genre_ids: [Int]
+  id: Int
+  original_title: String
+  original_language: String
+  title: String
+  backdrop_path: String
+  popularity: Float
+  vote_count: Int
+  video: Boolean
+  vote_average: Float
+}
+
+type Query {
+  movies: [Movie]
+  movie(id: Int): Movie
+  suggestions(id: Int): [Movie]
+}
