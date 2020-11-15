@@ -62,9 +62,7 @@ export const getMovies = async () => {
 };
 
 export const getMovie = async (id) => {
-  const {
-    data: { results },
-  } = await moviesApi.movieDetail(id);
+  const { data: results } = await moviesApi.movieDetail(id);
   return results;
 };
 
